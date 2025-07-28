@@ -1,118 +1,140 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Stethoscope, BookOpen, Gamepad2, Heart } from "lucide-react";
+import { Stethoscope, BookOpen, Gamepad2, Heart, ArrowRight } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  if (showWelcome) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <div className="mb-8">
+            <Heart className="h-24 w-24 mx-auto mb-6 text-primary animate-pulse" />
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Bem-vindo(a) ao<br />
+              <span className="text-primary">Guia de Enfermagem</span>
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              Aqui você encontra <strong>técnicas</strong>, <strong>termos</strong> e <strong>jogos</strong> para 
+              aprender e revisar enfermagem de forma simples e eficiente.
+            </p>
+            <div className="bg-card p-6 rounded-lg border shadow-sm mb-8">
+              <p className="text-foreground font-medium">
+                ✨ Desenvolvido especialmente para estudantes e profissionais da área da saúde
+              </p>
+            </div>
+          </div>
+          
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg"
+            onClick={() => setShowWelcome(false)}
+          >
+            Começar agora
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card shadow-sm border-b">
+      <header className="bg-primary/10 border-b">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3">
-            <Heart className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-bold text-foreground">Guia de Enfermagem</h1>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Heart className="h-10 w-10 text-primary" />
+              <h1 className="text-3xl font-bold text-foreground">Guia de Enfermagem</h1>
+            </div>
+            <p className="text-muted-foreground">
+              Escolha um módulo para começar seus estudos
+            </p>
           </div>
-          <p className="text-muted-foreground mt-2">
-            Seu guia completo para técnicas, nomenclaturas e aprendizado interativo
-          </p>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           
-          {/* Módulo Técnicas */}
-          <Card className="bg-module-tecnicas border-module-tecnicas hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-4 bg-white/50 rounded-full w-fit">
-                <Stethoscope className="h-12 w-12 text-module-tecnicas-foreground group-hover:scale-110 transition-transform" />
-              </div>
-              <CardTitle className="text-2xl text-module-tecnicas-foreground">
-                Técnicas de Enfermagem
-              </CardTitle>
-              <CardDescription className="text-module-tecnicas-foreground/70">
-                15 técnicas essenciais com passo a passo detalhado
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={() => navigate('/tecnicas')}
-                className="w-full bg-white/20 hover:bg-white/30 text-module-tecnicas-foreground border-0"
-                size="lg"
-              >
-                Explorar Técnicas
-              </Button>
-            </CardContent>
-          </Card>
+          {/* Técnicas de Enfermagem */}
+          <div className="group cursor-pointer" onClick={() => navigate('/tecnicas')}>
+            <Card className="border border-module-tecnicas/20 hover:shadow-lg transition-all duration-300 h-full">
+              <CardHeader className="bg-module-tecnicas/20 text-center pb-6 border-b">
+                <div className="w-16 h-16 bg-module-tecnicas rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Stethoscope className="h-8 w-8 text-module-tecnicas-foreground" />
+                </div>
+                <CardTitle className="text-xl text-foreground mb-2">
+                  Técnicas de Enfermagem
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <CardDescription className="text-center mb-6">
+                  15 técnicas essenciais com nome, objetivo, materiais, passo a passo e vídeo demonstrativo
+                </CardDescription>
+                <Button 
+                  className="w-full bg-module-tecnicas hover:bg-module-tecnicas/90 text-module-tecnicas-foreground"
+                >
+                  Acessar Técnicas
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-          {/* Módulo Nomenclaturas */}
-          <Card className="bg-module-nomenclaturas border-module-nomenclaturas hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-4 bg-white/50 rounded-full w-fit">
-                <BookOpen className="h-12 w-12 text-module-nomenclaturas-foreground group-hover:scale-110 transition-transform" />
-              </div>
-              <CardTitle className="text-2xl text-module-nomenclaturas-foreground">
-                Nomenclaturas
-              </CardTitle>
-              <CardDescription className="text-module-nomenclaturas-foreground/70">
-                Dicionário com 100 termos técnicos essenciais
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={() => navigate('/nomenclaturas')}
-                className="w-full bg-white/20 hover:bg-white/30 text-module-nomenclaturas-foreground border-0"
-                size="lg"
-              >
-                Consultar Dicionário
-              </Button>
-            </CardContent>
-          </Card>
+          {/* Nomenclaturas */}
+          <div className="group cursor-pointer" onClick={() => navigate('/nomenclaturas')}>
+            <Card className="border border-module-nomenclaturas/20 hover:shadow-lg transition-all duration-300 h-full">
+              <CardHeader className="bg-module-nomenclaturas/20 text-center pb-6 border-b">
+                <div className="w-16 h-16 bg-module-nomenclaturas rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <BookOpen className="h-8 w-8 text-module-nomenclaturas-foreground" />
+                </div>
+                <CardTitle className="text-xl text-foreground mb-2">
+                  Nomenclaturas
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <CardDescription className="text-center mb-6">
+                  Dicionário com 100 termos técnicos, definições simples, imagens e sistema de busca
+                </CardDescription>
+                <Button 
+                  className="w-full bg-module-nomenclaturas hover:bg-module-nomenclaturas/90 text-module-nomenclaturas-foreground"
+                >
+                  Consultar Termos
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-          {/* Módulo Jogos */}
-          <Card className="bg-module-jogos border-module-jogos hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-4 bg-white/50 rounded-full w-fit">
-                <Gamepad2 className="h-12 w-12 text-module-jogos-foreground group-hover:scale-110 transition-transform" />
-              </div>
-              <CardTitle className="text-2xl text-module-jogos-foreground">
-                Jogos Educativos
-              </CardTitle>
-              <CardDescription className="text-module-jogos-foreground/70">
-                Quiz, memória e associação de termos
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={() => navigate('/jogos')}
-                className="w-full bg-white/20 hover:bg-white/30 text-module-jogos-foreground border-0"
-                size="lg"
-              >
-                Começar a Jogar
-              </Button>
-            </CardContent>
-          </Card>
+          {/* Jogos Educativos */}
+          <div className="group cursor-pointer" onClick={() => navigate('/jogos')}>
+            <Card className="border border-module-jogos/20 hover:shadow-lg transition-all duration-300 h-full">
+              <CardHeader className="bg-module-jogos/20 text-center pb-6 border-b">
+                <div className="w-16 h-16 bg-module-jogos rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Gamepad2 className="h-8 w-8 text-module-jogos-foreground" />
+                </div>
+                <CardTitle className="text-xl text-foreground mb-2">
+                  Jogos Educativos
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <CardDescription className="text-center mb-6">
+                  Quiz, associação de termos e jogos de memória para reforçar o conteúdo aprendido
+                </CardDescription>
+                <Button 
+                  className="w-full bg-module-jogos hover:bg-module-jogos/90 text-module-jogos-foreground"
+                >
+                  Jogar Agora
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-        </div>
-
-        {/* Info adicional */}
-        <div className="mt-16 text-center">
-          <Card className="max-w-2xl mx-auto">
-            <CardContent className="pt-6">
-              <h2 className="text-xl font-semibold mb-3 text-foreground">
-                Bem-vindo ao seu Guia de Enfermagem
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Este app foi desenvolvido para estudantes e profissionais de enfermagem. 
-                Aqui você encontra técnicas fundamentais, um dicionário completo de termos 
-                médicos e jogos educativos para reforçar seu aprendizado de forma interativa.
-              </p>
-            </CardContent>
-          </Card>
         </div>
       </main>
     </div>
