@@ -52,6 +52,19 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Cores específicas dos módulos
+				'module-tecnicas': {
+					DEFAULT: 'hsl(var(--module-tecnicas))',
+					foreground: 'hsl(var(--module-tecnicas-foreground))'
+				},
+				'module-nomenclaturas': {
+					DEFAULT: 'hsl(var(--module-nomenclaturas))',
+					foreground: 'hsl(var(--module-nomenclaturas-foreground))'
+				},
+				'module-jogos': {
+					DEFAULT: 'hsl(var(--module-jogos))',
+					foreground: 'hsl(var(--module-jogos-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

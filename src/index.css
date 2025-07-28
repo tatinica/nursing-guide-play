@@ -2,39 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Design system para Guia de Enfermagem - tons pastéis e neutros */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 20% 98%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Azul suave para elementos médicos */
+    --primary: 210 55% 82%;
+    --primary-foreground: 220 13% 18%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Verde menta suave */
+    --secondary: 150 40% 85%;
+    --secondary-foreground: 220 13% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Lavanda suave */
+    --muted: 250 25% 90%;
+    --muted-foreground: 220 13% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Rosa suave */
+    --accent: 340 35% 85%;
+    --accent-foreground: 220 13% 18%;
+
+    /* Módulo Técnicas - Tom azul claro */
+    --module-tecnicas: 200 65% 88%;
+    --module-tecnicas-foreground: 220 13% 18%;
+
+    /* Módulo Nomenclaturas - Tom verde claro */
+    --module-nomenclaturas: 140 45% 88%;
+    --module-nomenclaturas-foreground: 220 13% 18%;
+
+    /* Módulo Jogos - Tom rosa claro */
+    --module-jogos: 320 40% 88%;
+    --module-jogos-foreground: 220 13% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 210 55% 82%;
 
     --radius: 0.5rem;
 
