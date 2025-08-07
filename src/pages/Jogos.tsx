@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Gamepad2, Trophy, Brain, Target } from "lucide-react";
+import MemoryGame from "@/components/jogos/MemoryGame";
+import AssociationGame from "@/components/jogos/AssociationGame";
 
 const Jogos = () => {
   const navigate = useNavigate();
@@ -29,13 +31,40 @@ const Jogos = () => {
       tempo: "10 min"
     },
     {
-      id: "memoria",
-      nome: "Jogo da Memória",
-      descricao: "Encontre os pares de cartas com procedimentos e instrumentos",
+      id: "memoria-nomenclatura",
+      nome: "Memória - Nomenclatura",
+      descricao: "Encontre os pares de termos técnicos e suas definições",
       icone: "🃏",
       cor: "bg-module-nomenclaturas/20",
       dificuldade: "Fácil",
       tempo: "5-10 min"
+    },
+    {
+      id: "memoria-tecnicas",
+      nome: "Memória - Técnicas",
+      descricao: "Associe técnicas de enfermagem com seus materiais",
+      icone: "🎯",
+      cor: "bg-module-tecnicas/20",
+      dificuldade: "Médio",
+      tempo: "8-12 min"
+    },
+    {
+      id: "associacao-popular",
+      nome: "Popular vs Técnico",
+      descricao: "Identifique a nomenclatura técnica correta",
+      icone: "📝",
+      cor: "bg-module-jogos/20",
+      dificuldade: "Médio",
+      tempo: "5-8 min"
+    },
+    {
+      id: "associacao-objetivo",
+      nome: "Técnica e Objetivo",
+      descricao: "Relacione cada técnica com seu objetivo principal",
+      icone: "🎯",
+      cor: "bg-module-nomenclaturas/20",
+      dificuldade: "Fácil",
+      tempo: "5-8 min"
     }
   ];
 
@@ -142,45 +171,110 @@ const Jogos = () => {
     );
   };
 
-  const AssociacaoComponent = () => (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader className="text-center">
-        <Brain className="h-16 w-16 text-module-tecnicas mx-auto mb-4" />
-        <CardTitle>Associação de Termos</CardTitle>
-        <CardDescription>
-          Arraste os termos para suas definições corretas
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="text-center">
-        <p className="text-muted-foreground mb-4">
-          Este jogo será implementado em breve com funcionalidade de arrastar e soltar.
-        </p>
-        <Button onClick={() => setSelectedGame(null)} variant="outline">
-          Voltar aos Jogos
-        </Button>
-      </CardContent>
-    </Card>
-  );
+  // Renderização dos jogos específicos
+  if (selectedGame === "memoria-nomenclatura") {
+    return (
+      <div className="min-h-screen bg-background">
+        <header className="bg-module-nomenclaturas border-b">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setSelectedGame(null)}
+                className="text-module-nomenclaturas-foreground hover:bg-white/20"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Voltar
+              </Button>
+              <h1 className="text-3xl font-bold text-module-nomenclaturas-foreground">Memória - Nomenclatura</h1>
+            </div>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-8">
+          <MemoryGame gameType="nomenclatura" onBack={() => setSelectedGame(null)} />
+        </main>
+      </div>
+    );
+  }
 
-  const MemoriaComponent = () => (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader className="text-center">
-        <Target className="h-16 w-16 text-module-nomenclaturas mx-auto mb-4" />
-        <CardTitle>Jogo da Memória</CardTitle>
-        <CardDescription>
-          Encontre os pares de cartas relacionadas à enfermagem
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="text-center">
-        <p className="text-muted-foreground mb-4">
-          Este jogo será implementado em breve com cartas interativas.
-        </p>
-        <Button onClick={() => setSelectedGame(null)} variant="outline">
-          Voltar aos Jogos
-        </Button>
-      </CardContent>
-    </Card>
-  );
+  if (selectedGame === "memoria-tecnicas") {
+    return (
+      <div className="min-h-screen bg-background">
+        <header className="bg-module-tecnicas border-b">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setSelectedGame(null)}
+                className="text-module-tecnicas-foreground hover:bg-white/20"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Voltar
+              </Button>
+              <h1 className="text-3xl font-bold text-module-tecnicas-foreground">Memória - Técnicas</h1>
+            </div>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-8">
+          <MemoryGame gameType="tecnicas" onBack={() => setSelectedGame(null)} />
+        </main>
+      </div>
+    );
+  }
+
+  if (selectedGame === "associacao-popular") {
+    return (
+      <div className="min-h-screen bg-background">
+        <header className="bg-module-jogos border-b">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setSelectedGame(null)}
+                className="text-module-jogos-foreground hover:bg-white/20"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Voltar
+              </Button>
+              <h1 className="text-3xl font-bold text-module-jogos-foreground">Popular vs Técnico</h1>
+            </div>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-8">
+          <AssociationGame gameType="popular-tecnico" onBack={() => setSelectedGame(null)} />
+        </main>
+      </div>
+    );
+  }
+
+  if (selectedGame === "associacao-objetivo") {
+    return (
+      <div className="min-h-screen bg-background">
+        <header className="bg-module-nomenclaturas border-b">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setSelectedGame(null)}
+                className="text-module-nomenclaturas-foreground hover:bg-white/20"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Voltar
+              </Button>
+              <h1 className="text-3xl font-bold text-module-nomenclaturas-foreground">Técnica e Objetivo</h1>
+            </div>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-8">
+          <AssociationGame gameType="tecnica-objetivo" onBack={() => setSelectedGame(null)} />
+        </main>
+      </div>
+    );
+  }
 
   if (selectedGame === "quiz") {
     return (
@@ -223,38 +317,12 @@ const Jogos = () => {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Voltar
               </Button>
-              <h1 className="text-3xl font-bold text-module-tecnicas-foreground">Associação de Termos</h1>
+              <h1 className="text-3xl font-bold text-module-tecnicas-foreground">Imagem e Termo</h1>
             </div>
           </div>
         </header>
         <main className="container mx-auto px-4 py-8">
-          <AssociacaoComponent />
-        </main>
-      </div>
-    );
-  }
-
-  if (selectedGame === "memoria") {
-    return (
-      <div className="min-h-screen bg-background">
-        <header className="bg-module-nomenclaturas border-b">
-          <div className="container mx-auto px-4 py-6">
-            <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => setSelectedGame(null)}
-                className="text-module-nomenclaturas-foreground hover:bg-white/20"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Voltar
-              </Button>
-              <h1 className="text-3xl font-bold text-module-nomenclaturas-foreground">Jogo da Memória</h1>
-            </div>
-          </div>
-        </header>
-        <main className="container mx-auto px-4 py-8">
-          <MemoriaComponent />
+          <AssociationGame gameType="imagem-termo" onBack={() => setSelectedGame(null)} />
         </main>
       </div>
     );
@@ -288,7 +356,7 @@ const Jogos = () => {
 
       {/* Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           
           {jogos.map((jogo) => (
             <Card key={jogo.id} className={`${jogo.cor} border-0 hover:shadow-lg transition-shadow cursor-pointer group`}>
@@ -317,7 +385,9 @@ const Jogos = () => {
                   className="w-full bg-white/20 hover:bg-white/30 text-foreground border-0"
                   size="lg"
                 >
-                  {jogo.id === "quiz" ? "Começar Quiz" : "Jogar"}
+                  {jogo.id === "quiz" ? "Começar Quiz" : 
+                   jogo.id.includes("memoria") ? "Jogar Memória" :
+                   jogo.id.includes("associacao") ? "Começar Associação" : "Jogar"}
                 </Button>
               </CardContent>
             </Card>
